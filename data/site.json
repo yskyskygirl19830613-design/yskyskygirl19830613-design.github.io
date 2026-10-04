@@ -1,0 +1,271 @@
+{
+ "version": 3,
+ "projects": [
+  {
+   "id": "field-audit",
+   "section": "factory",
+   "title": "Field Audit Assistant",
+   "subtitle": "",
+   "status": "Prototype",
+   "tone": "build",
+   "desc": "Auditors photograph and narrate issues on the spot. The system drafts a traceable corrective-action record, and the fix closes within seven days.",
+   "features": [],
+   "tags": [
+    "PWA",
+    "Speech-to-text",
+    "MES"
+   ],
+   "cover": {
+    "art": "field-audit"
+   },
+   "problem": "Audit findings were written up by hand after each walk, details got lost along the way, and follow-up actions often slipped past their deadline.",
+   "role": "Defined the requirements, wrote the IT spec and built the working mobile prototype.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "audit-dispatch",
+   "section": "factory",
+   "title": "Smart Audit Dispatch",
+   "subtitle": "",
+   "status": "Proposal",
+   "tone": "plan",
+   "desc": "Every morning, MES and SPC anomalies produce a ranked list of machines to audit and dispatch it to inspectors, so audits go where the problems are.",
+   "features": [],
+   "tags": [
+    "MES",
+    "SPC",
+    "IPQC"
+   ],
+   "cover": {
+    "art": "audit-dispatch"
+   },
+   "problem": "Inspectors audited machines on a fixed rotation, while machines already showing anomalies in MES and SPC were not prioritized.",
+   "role": "Proposed the concept and wrote the requirements for management and IT review.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "ois",
+   "section": "factory",
+   "title": "OIS 2.0 Inspection Platform",
+   "subtitle": "",
+   "status": "Live",
+   "tone": "live",
+   "desc": "Led the inspection system's UI redesign and automated first-article inspection gating, rolled out across many production workstations.",
+   "features": [],
+   "tags": [
+    "FAI",
+    "IPQC",
+    "AOI / LVI"
+   ],
+   "cover": {
+    "art": "ois"
+   },
+   "problem": "Inspection navigation was hard to follow, and first-article results were passed along by hand without a link to the work order.",
+   "role": "Led the UI redesign and first-article inspection improvements, and coordinated the rollout across workstations.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "hr-notice",
+   "section": "factory",
+   "title": "HR Notice Automation",
+   "subtitle": "",
+   "status": "In development",
+   "tone": "build",
+   "desc": "Automatically anonymizes names, condenses notice text and screens leave-document photos, with HR review kept for borderline cases.",
+   "features": [],
+   "tags": [
+    "Anonymization",
+    "Vision",
+    "EIP"
+   ],
+   "cover": {
+    "art": "hr-notice"
+   },
+   "problem": "Each monthly notice meant manually masking names, trimming text and checking leave documents one by one.",
+   "role": "Turned the HR requirements into the functional and program specs, including the review rules.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "cam",
+   "section": "factory",
+   "title": "CAM Back-office Automation",
+   "subtitle": "",
+   "status": "Rolling out",
+   "tone": "build",
+   "desc": "Engineering jobs flow from scheduling through scripted processing to database write-back without manual hand-offs.",
+   "features": [],
+   "tags": [
+    "WIP",
+    "Scripting",
+    "Database"
+   ],
+   "cover": {
+    "art": "cam"
+   },
+   "problem": "Design staff repeated the same scheduling and scripting steps for every engineering job.",
+   "role": "Defined the automation flow, tracked delivery and reported progress to leadership.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "material",
+   "section": "factory",
+   "title": "Material Error-proofing",
+   "subtitle": "",
+   "status": "Spec ready",
+   "tone": "plan",
+   "desc": "Binds work order, material lot and reel ID to replace hand labeling, tracks reel usage automatically, with an RFID roadmap.",
+   "features": [],
+   "tags": [
+    "Barcode",
+    "RFID",
+    "MES / SAP"
+   ],
+   "cover": {
+    "art": "material"
+   },
+   "problem": "Labels went missing or were swapped, thickness readings were copied by hand, and reel life was never recorded.",
+   "role": "Defined the control rules and wrote the IT spec and data table definitions.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "subverse",
+   "section": "personal",
+   "featured": true,
+   "title": "SubVerse",
+   "subtitle": "Taiwan dive companion",
+   "status": "Pre-launch",
+   "tone": "build",
+   "desc": "An all-in-one app for divers in Taiwan: trip prep, sea conditions, a digital dive log, a certification wallet, and a 3D underwater world you can actually swim through.",
+   "features": [
+    "\"Can I dive today?\" signal for each dive site",
+    "Post-dive flying and altitude countdown",
+    "Dive-computer import, replayed as a 3D track",
+    "Marine-life collection unlocked by real dives"
+   ],
+   "tags": [
+    "Three.js 3D",
+    "Capacitor",
+    "Android + iOS",
+    "Codemagic CI"
+   ],
+   "cover": {
+    "art": "subverse"
+   },
+   "problem": "Divers in Taiwan check sea conditions, logs and certifications across scattered apps and websites.",
+   "role": "Solo: product, design, development and app-store release.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "smartsats",
+   "section": "personal",
+   "title": "Smart Sats",
+   "subtitle": "Bitcoin for beginners",
+   "status": "Web app",
+   "tone": "live",
+   "desc": "A beginner's guide to Bitcoin dollar-cost averaging, led by Cong-Cong the squirrel. Practice with real historical prices before risking real money.",
+   "features": [
+    "Monthly DCA back-test simulator",
+    "Pick your own indicators, check today's buy signal",
+    "Stash log, winter mode, stash-day reminders"
+   ],
+   "tags": [
+    "EN / 繁中 / 日本語",
+    "Fintech education"
+   ],
+   "cover": {
+    "art": "smartsats"
+   },
+   "problem": "Beginners want to start with Bitcoin but don't know how dollar-cost averaging plays out or when to buy.",
+   "role": "Solo: product, design and development.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "jiyu",
+   "section": "personal",
+   "title": "JiYu SkillMeet",
+   "subtitle": "Skill exchange for Taiwan",
+   "status": "Deployed",
+   "tone": "live",
+   "desc": "Teach someone photography, learn Excel in return. A PWA you add straight to your home screen.",
+   "features": [
+    "Full stack built from scratch",
+    "Online payments and push notifications",
+    "Shipped with every test scenario passing"
+   ],
+   "tags": [
+    "Supabase",
+    "Vercel",
+    "Stripe",
+    "Web Push"
+   ],
+   "cover": {
+    "art": "jiyu"
+   },
+   "problem": "Paid courses are expensive, while many people have a skill they would happily teach in exchange.",
+   "role": "Solo: product, full-stack development and deployment.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  },
+  {
+   "id": "cap",
+   "section": "personal",
+   "title": "CAP Tutor",
+   "subtitle": "Junior-high exam practice",
+   "status": "In development",
+   "tone": "plan",
+   "desc": "Practice for Taiwan's junior-high CAP exam across all five subjects, aligned to the current curriculum and organized by semester.",
+   "features": [
+    "A step-by-step tutor for every wrong answer",
+    "Duolingo-style daily streaks",
+    "Free for top-3 students in their school"
+   ],
+   "tags": [
+    "EdTech",
+    "App Store",
+    "Google Play"
+   ],
+   "cover": {
+    "art": "cap"
+   },
+   "problem": "Students practice past exam questions but get little explanation of what they got wrong.",
+   "role": "Solo: product definition, design and development.",
+   "approach": "",
+   "results": "",
+   "link": "",
+   "linkLabel": ""
+  }
+ ],
+ "items": {},
+ "profile": {
+  "intro": "I'm a smart-manufacturing project manager in Kaohsiung, building inspection, audit and automation systems with production and IT teams at a flexible-PCB maker. Outside work, I design and ship my own apps for divers, new investors and students.",
+  "email": "yskyskygirl19830613@gmail.com",
+  "linkedin": "",
+  "github": ""
+ }
+}

@@ -218,6 +218,31 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
 .d-sec p{margin:0;color:var(--silt);white-space:pre-wrap;max-width:62ch}
 .d-sec .feat{color:var(--foam)}
 @media (max-width:560px){.d-sec{grid-template-columns:1fr}}
+/* experience / resume */
+.cv{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:clamp(24px,4vw,48px)}
+@media (max-width:820px){.cv{grid-template-columns:1fr}}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:5px;top:8px;bottom:8px;width:1px;background:var(--current)}
+.tl li{position:relative;padding:0 0 26px 30px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;background:var(--abyss);border:1.5px solid var(--brass)}
+.tl li.now::before{background:var(--kelp);border-color:var(--kelp);box-shadow:0 0 0 4px rgba(79,179,154,.18)}
+.tl .yr{font-family:var(--f-mono);font-size:.76rem;color:var(--brass);letter-spacing:.08em}
+.tl h3{margin:2px 0 0;font-size:1.12rem;font-weight:700;line-height:1.35}
+.tl .org{color:var(--silt);font-size:.94rem}
+.tl p{margin:6px 0 0;color:var(--silt);font-size:.92rem;max-width:56ch}
+.awards{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding:0;list-style:none}
+.awards li{padding:0!important;font-family:var(--f-mono);font-size:.72rem;color:var(--foam);border:1px solid var(--current);background:rgba(6,20,31,.6);border-radius:5px;padding:2px 8px!important}
+.awards li::before{display:none}
+.awards li b{color:var(--brass);font-weight:600}
+.cv-side{display:grid;gap:14px;align-content:start}
+.cv-box{border:1px solid var(--current);border-radius:12px;background:rgba(11,34,51,.55);padding:16px 18px}
+.cv-box h3{margin:0 0 8px;font-family:var(--f-mono);font-size:.74rem;color:var(--brass);letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.cv-box p{margin:0;font-size:.95rem}
+.cv-box p+p{margin-top:8px}
+.cv-box small{display:block;color:var(--silt);font-size:.84rem}
+.cv-dl{display:flex;gap:8px;flex-wrap:wrap}
+.cv-dl a{font-size:.74rem;padding:7px 14px}
 .d-missing{font-size:.82rem;color:var(--coral);font-family:var(--f-mono)}
 </style>
 
@@ -227,6 +252,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     <nav class="nav" aria-label="Sections">
       <a href="#factory">Smart Factory</a>
       <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
       <button class="edit-btn" id="editBtn" type="button" hidden>Edit</button>
@@ -257,7 +283,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       <div class="gauge-line"><span class="dot"></span><span>Kaohsiung, Taiwan · Smart Factory PM &amp; Indie Builder</span></div>
       <h1>Susan <em>Chiu</em></h1>
       <p class="intro" id="intro">I&#x27;m a smart-manufacturing project manager in Kaohsiung, building inspection, audit and automation systems with production and IT teams at a flexible-PCB maker. Outside work, I design and ship my own apps for divers, new investors and students.</p>
-      <div class="hero-acts"><a class="btn-pri" href="#contact">Get in touch</a><button class="btn-ghost" id="editProfile" type="button" hidden>Edit intro &amp; contact</button></div>
+      <div class="hero-acts"><a class="btn-pri" href="#contact">Get in touch</a><a class="btn-ghost" href="resume/Susan-Chiu-Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a><button class="btn-ghost" id="editProfile" type="button" hidden>Edit intro &amp; contact</button></div>
       <ul class="facts">
         <li><b id="nFactory">6</b> smart-factory projects</li>
         <li><b id="nPersonal">4</b> personal products</li>
@@ -448,6 +474,50 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
             <text x="256" y="144" font-size="7" fill="#8ea6b4" text-anchor="middle">DAY STREAK</text>
             <g font-size="8" fill="#8ea6b4" text-anchor="middle"><text x="62" y="70">CHN</text><text x="62" y="90">ENG</text><text x="62" y="110" fill="#c9a24a">MATH</text><text x="62" y="130">SCI</text><text x="62" y="150">SOC</text></g>
           </svg></div><div class="body"><div class="card-top"><h3>CAP Tutor<small>Junior-high exam practice</small></h3><span class="chip plan">In development</span></div><p>Practice for Taiwan&#x27;s junior-high CAP exam across all five subjects, aligned to the current curriculum and organized by semester.</p><ul class="feat"><li>A step-by-step tutor for every wrong answer</li><li>Duolingo-style daily streaks</li><li>Free for top-3 students in their school</li></ul><div class="tags"><span>EdTech</span><span>App Store</span><span>Google Play</span></div><div class="card-acts"><a class="btn-ghost" href="#cap">Case study →</a></div></div></article></div>
+    </section>
+
+    <section id="experience">
+      <div class="depth">
+        <span class="m">−45 m</span>
+        <h2>Experience</h2>
+        <p>Twenty years across semiconductor packaging, the army and flexible-PCB manufacturing.</p>
+      </div>
+      <div class="cv">
+        <ol class="tl">
+          <li class="now">
+            <div class="yr">2013 – PRESENT</div>
+            <h3>Smart Factory Project Section Manager</h3>
+            <div class="org">FLEXium Interconnect · Kaohsiung</div>
+            <p>Started in design, then moved into project management for the smart factory: inspection, audit and automation systems built with production and IT teams.</p>
+            <ul class="awards" aria-label="Awards">
+              <li><b>2017</b> Highlight Award · 1st</li>
+              <li><b>2018</b> Highlight Award · 3rd</li>
+              <li><b>2020</b> Highlight Award · 3rd</li>
+              <li><b>2021</b> Highlight Award · 3rd</li>
+              <li><b>2022</b> Highlight Award · 2nd</li>
+              <li><b>2022</b> Outstanding Employee</li>
+              <li><b>2023</b> Highlight Award · 2nd</li>
+              <li><b>2024</b> Highlight Award · 2nd</li>
+              <li><b>2025</b> Highlight Award · 2nd</li>
+            </ul>
+          </li>
+          <li>
+            <div class="yr">2008 – 2013</div>
+            <h3>Captain, IT Officer</h3>
+            <div class="org">Army Artillery School, Taiwan</div>
+          </li>
+          <li>
+            <div class="yr">2006 – 2008</div>
+            <h3>Product Engineer</h3>
+            <div class="org">ASE Group</div>
+          </li>
+        </ol>
+        <div class="cv-side">
+          <div class="cv-box"><h3>Education</h3><p>National Kaohsiung University of Applied Sciences<small>Electronic Engineering</small></p></div>
+          <div class="cv-box"><h3>Certifications</h3><p>Project Management Professional (PMP)<small>Project Management Institute</small></p><p>Open Water Scuba Diver<small>SDI · 2025</small></p></div>
+          <div class="cv-box"><h3>Résumé</h3><div class="cv-dl"><a class="btn-pri" href="resume/Susan-Chiu-Resume.pdf" target="_blank" rel="noopener">View PDF</a><a class="btn-ghost" href="resume/Susan-Chiu-Resume.pptx" download>PowerPoint</a></div></div>
+        </div>
+      </div>
     </section>
 
     <section id="skills">

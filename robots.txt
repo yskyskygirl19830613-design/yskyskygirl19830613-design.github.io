@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yskyskygirl19830613-design.github.io/sitemap.xml

@@ -784,6 +784,46 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     "DAY STREAK":"天連續","UCL":"上限","LCL":"下限","REEL 1011-0427":"捲管 1011-0427","CHN":"國文","ENG":"英文","MATH":"數學","SCI":"自然","SOC":"社會"};
   var TAGT={"Anonymization":"去識別化","Barcode":"條碼","Database":"資料庫","Scripting":"腳本自動化","Speech-to-text":"語音轉文字",
     "Vision":"影像辨識","EdTech":"教育科技","Fintech education":"理財教育"};
+
+
+  /* edit UI in Chinese */
+  var EDT={'Edit':'編輯','Done':'完成','Edit project':'編輯作品','New project':'新增作品','+ Add a new project':'＋ 新增作品',
+    '+ Add video, image, link or note':'＋ 新增影片、圖片、連結或紀錄','Delete':'刪除','Confirm':'確認刪除','Delete project':'刪除作品','Tap again to delete':'再按一次確認刪除',
+    'Cancel':'取消','Save':'儲存','Saving…':'儲存中…','Uploading…':'上傳中…','Edit intro & contact':'編輯自我介紹與聯絡方式',
+    'Not filled in yet. Use Edit project to add it.':'尚未填寫，請按「編輯作品」補上。',
+    'Saved.':'已儲存。','Deleted.':'已刪除。','Project deleted.':'作品已刪除。','Project added.':'已新增作品。','Project saved.':'作品已儲存。',
+    'Selected. Copy it with your keyboard or long-press.':'已選取，請用鍵盤或長按複製。',
+    'This view is read-only.':'這個畫面是唯讀的。','That file is too large to store here. Upload it to YouTube or Google Drive and paste the link.':'檔案太大，請上傳到 YouTube 或 Google 雲端硬碟後貼上連結。',
+    'Saving is not available in this view. Open the page from your Claude account and try again.':'這個畫面無法存檔，請從你的 Claude 帳號開啟網頁再試一次。',
+    'The page was updated elsewhere and is reloading. Try again after it reloads.':'網頁已在其他地方更新，正在重新載入，載入後再試一次。',
+    'Saving too often. Wait a moment and try again.':'存檔太頻繁，請稍等一下再試。','Could not save right now. Try again in a moment.':'目前無法存檔，請稍後再試。',
+    'Add a title or a description.':'請填寫標題或說明。','Enter a full link starting with https://':'請輸入以 https:// 開頭的完整連結。',
+    'Choose a file to upload or paste a link.':'請選擇要上傳的檔案，或貼上連結。','Give the project a title.':'請填寫作品名稱。',
+    'The main link must start with https://':'主要連結必須以 https:// 開頭。','Links must start with https://':'連結必須以 https:// 開頭。',
+    'Upload a video up to 15 MB, or paste a YouTube / Drive link instead.':'上傳 15 MB 以內的影片，或貼上 YouTube／雲端硬碟連結。',
+    'Upload an image up to 15 MB, or paste an image link.':'上傳 15 MB 以內的圖片，或貼上圖片連結。',
+    'Paste the product site, App Store page, demo or article.':'貼上產品網站、App Store 頁面、示範或文章連結。'};
+  function E(k){return lang==='zh'&&EDT[k]?EDT[k]:k}
+  var FORMZH={
+    project:{'Section':'分類','Status color':'狀態顏色','Title':'名稱（英文）','Subtitle':'副標題（英文）','Status label':'狀態文字（英文）','Description':'簡介（英文）',
+      'Main link':'主要連結','Button text':'按鈕文字（英文）','The problem':'遇到的問題（英文）','My role':'我的角色（英文）','Approach':'做法（英文）','Results':'成果（英文）',
+      'Highlights (one per line)':'重點功能（英文，一行一點）','Tags (separate with commas)':'標籤（以逗號分隔）','Cover image':'封面圖片',
+      'Show as a wide featured card':'以寬版精選卡片顯示','Remove uploaded cover':'移除已上傳的封面','Remove uploaded cover (back to the illustration)':'移除已上傳的封面（換回示意圖）',
+      'Optional. Without one, the card shows a simple initial.':'選填。沒有封面時，卡片會顯示名稱的第一個字。','Leave empty to keep the current cover.':'不選擇檔案就保留目前的封面。',
+      'Smart Factory Work':'智慧工廠專案','Personal Projects':'個人作品','Green · live / done':'綠色・已上線／完成','Orange · in progress':'橘色・進行中','Grey · planned / idea':'灰色・規劃中／構想',
+      'optional':'選填','e.g. Live, Prototype, Pre-launch':'例如：Live、Prototype','Try it, Visit, Download':'例如：Try it、Visit','How you solved it':'你怎麼解決的',
+      'e.g. Cut report time from 30 to 5 minutes; rolled out to 29 workstations':'例如：Cut report time from 30 to 5 minutes','e.g. PWA, MES, Supabase':'例如：PWA, MES, Supabase'},
+    media:{'Type':'類型','Video':'影片','Image':'圖片','Link':'連結','Note':'紀錄','Date':'日期','Title':'標題','Upload file':'上傳檔案','URL':'網址','Description':'說明',
+      'e.g. Demo walkthrough':'例如：操作示範','What it shows, results, notes':'內容、成果或備註'},
+    profile:{'Intro & contact':'自我介紹與聯絡方式','Short intro':'自我介紹（英文）','Short intro · 中文':'自我介紹（中文）','LinkedIn URL':'LinkedIn 網址','GitHub URL':'GitHub 網址'}
+  };
+  function trForm(f,kind){
+    if(lang!=='zh')return;var D=FORMZH[kind];
+    var w=document.createTreeWalker(f,NodeFilter.SHOW_TEXT);var n,list=[];while((n=w.nextNode()))list.push(n);
+    list.forEach(function(n){var t=n.nodeValue.trim();var z=D[t]||EDT[t];if(z)n.nodeValue=n.nodeValue.replace(t,z)});
+    f.querySelectorAll('[placeholder]').forEach(function(x){var z=D[x.placeholder];if(z)x.placeholder=z});
+  }
+
   function TG(x){return lang==='zh'&&TAGT[x]?TAGT[x]:x}
   function localizeArt(node){
     if(lang!=='zh')return;
@@ -847,6 +887,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false')});
     var dc=document.getElementById('dClose');if(dc)dc.setAttribute('aria-label',T('Close'));
     applyStatic();
+    var eb0=document.getElementById('editBtn');if(eb0)eb0.textContent=E(eb0.getAttribute('aria-pressed')==='true'?'Done':'Edit');
     if(!silent)render();
   }
   document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){if(b.dataset.lang!==lang)setLang(b.dataset.lang)})});
@@ -855,7 +896,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   var TONES={live:'Live / done',build:'In progress',plan:'Planned / idea'};
 
   var toastEl=document.createElement('div');toastEl.className='toast';toastEl.hidden=true;document.body.appendChild(toastEl);
-  var toastT;function toast(m){toastEl.textContent=m;toastEl.hidden=false;clearTimeout(toastT);toastT=setTimeout(function(){toastEl.hidden=true},3200)}
+  var toastT;function toast(m){toastEl.textContent=E(m);toastEl.hidden=false;clearTimeout(toastT);toastT=setTimeout(function(){toastEl.hidden=true},3200)}
   function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e}
   function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return u}}
   function safeUrl(u){try{var x=new URL(u);return(x.protocol==='https:'||x.protocol==='http:')?x.href:null}catch(e){return null}}
@@ -901,9 +942,9 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       n.appendChild(top);if(it.text)n.appendChild(el('p',null,it.text));box.appendChild(n);
     }
     if(editing){
-      var d=el('button','m-del','Delete');d.type='button';
+      var d=el('button','m-del',E('Delete'));d.type='button';
       d.addEventListener('click',function(){
-        if(d.dataset.armed!=='1'){d.dataset.armed='1';d.textContent='Confirm';setTimeout(function(){if(d.isConnected){d.dataset.armed='';d.textContent='Delete'}},3000);return}
+        if(d.dataset.armed!=='1'){d.dataset.armed='1';d.textContent=E('Confirm');setTimeout(function(){if(d.isConnected){d.dataset.armed='';d.textContent=E('Delete')}},3000);return}
         var next=clone(state);var list=next.items[pid]||[];var old=list.filter(function(x){return x.id===it.id})[0];
         next.items[pid]=list.filter(function(x){return x.id!==it.id});
         var files={};if(old&&old.file)files[old.file]=null;
@@ -926,18 +967,19 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       '<label>Description<textarea id="'+fid+'-text" maxlength="2000" placeholder="What it shows, results, notes"></textarea></label>'+
       '<p class="m-err" hidden></p>'+
       '<div class="acts"><button type="button" data-cancel>Cancel</button><button type="submit">Save</button></div>';
+    trForm(f,'media');
     var q=function(s){return f.querySelector(s)};
     var type=q('#'+fid+'-type'),file=q('#'+fid+'-file'),url=q('#'+fid+'-url'),hint=q('[data-f=hint]'),err=q('.m-err');
     q('#'+fid+'-date').value=new Date().toISOString().slice(0,10);
     function sync(){var t=type.value;
       q('[data-f=file]').hidden=!(t==='video'||t==='image');q('[data-f=url]').hidden=(t==='note');
       file.accept=t==='image'?'image/png,image/jpeg,image/webp,image/gif':'video/mp4,video/webm,video/quicktime';
-      hint.textContent=t==='video'?'Upload a video up to 15 MB, or paste a YouTube / Drive link instead.':t==='image'?'Upload an image up to 15 MB, or paste an image link.':t==='link'?'Paste the product site, App Store page, demo or article.':'';
+      hint.textContent=E(t==='video'?'Upload a video up to 15 MB, or paste a YouTube / Drive link instead.':t==='image'?'Upload an image up to 15 MB, or paste an image link.':t==='link'?'Paste the product site, App Store page, demo or article.':'');
       hint.hidden=!hint.textContent}
     type.addEventListener('change',sync);sync();
     q('[data-cancel]').addEventListener('click',render);
     f.addEventListener('submit',function(e){
-      e.preventDefault();err.hidden=true;function fail(m){err.textContent=m;err.hidden=false}
+      e.preventDefault();err.hidden=true;function fail(m){err.textContent=E(m);err.hidden=false}
       var t=type.value,fl=(t==='video'||t==='image')?file.files[0]:null,u=url.value.trim();
       var title=q('#'+fid+'-title').value.trim(),text=q('#'+fid+'-text').value.trim(),date=q('#'+fid+'-date').value;
       if(t==='note'&&!title&&!text)return fail('Add a title or a description.');
@@ -949,8 +991,8 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       if(fl){item.file='media/'+id+'.'+extOf(fl,t==='video'?'mp4':'jpg');files[item.file]=fl;blobUrls[item.file]=URL.createObjectURL(fl)}
       else if(t!=='note')item.url=safeUrl(u);
       var next=clone(state);(next.items[pid]=next.items[pid]||[]).push(item);
-      lockForm(f,true,fl?'Uploading…':'Saving…');
-      save(next,files).then(function(ok){if(ok){render();toast('Saved.')}else{lockForm(f,false,'Save');fail(lastErr)}});
+      lockForm(f,true,E(fl?'Uploading…':'Saving…'));
+      save(next,files).then(function(ok){if(ok){render();toast('Saved.')}else{lockForm(f,false,E('Save'));fail(lastErr)}});
     });
     slot.replaceWith(f);
   }
@@ -984,7 +1026,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     b.appendChild(acts);
     if(editing){
       var bar=el('div','p-tools');
-      var eb=el('button',null,'Edit project');eb.type='button';eb.addEventListener('click',function(){projectForm(p0,a)});
+      var eb=el('button',null,E('Edit project'));eb.type='button';eb.addEventListener('click',function(){projectForm(p0,a)});
       var up=el('button',null,'↑');up.type='button';up.setAttribute('aria-label','Move up');up.disabled=idx===0;up.addEventListener('click',function(){move(p.id,-1)});
       var dn=el('button',null,'↓');dn.type='button';dn.setAttribute('aria-label','Move down');dn.disabled=idx===list.length-1;dn.addEventListener('click',function(){move(p.id,1)});
       bar.appendChild(eb);bar.appendChild(up);bar.appendChild(dn);b.appendChild(bar);
@@ -1037,6 +1079,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       '<label class="chk"><input id="'+fid+'-feat-wide" type="checkbox"> Show as a wide featured card</label>'+
       '<p class="m-err" hidden></p>'+
       '<div class="acts">'+(isNew?'':'<button type="button" class="danger" data-del>Delete project</button><span style="flex:1"></span>')+'<button type="button" data-cancel>Cancel</button><button type="submit">Save</button></div>';
+    trForm(f,'project');
     var q=function(s){return f.querySelector(s)};
     q('#'+fid+'-sec').value=p.section||'personal';q('#'+fid+'-tone').value=p.tone||'build';
     q('#'+fid+'-title').value=p.title||'';q('#'+fid+'-sub').value=p.subtitle||'';q('#'+fid+'-status').value=p.status||'';
@@ -1045,19 +1088,19 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     var zp=p.zh||{};q('#'+fid+'-zt').value=zp.title||'';q('#'+fid+'-zs').value=zp.subtitle||'';q('#'+fid+'-zst').value=zp.status||'';q('#'+fid+'-zd').value=zp.desc||'';
     q('#'+fid+'-zp').value=zp.problem||'';q('#'+fid+'-zr').value=zp.role||'';q('#'+fid+'-za').value=zp.approach||'';q('#'+fid+'-zres').value=zp.results||'';
     q('#'+fid+'-zf').value=(zp.features||[]).join('\n');q('#'+fid+'-zl').value=zp.linkLabel||'';
-    if(lang==='zh')q('.zh-fields').open=true;
+    if(lang==='zh'){var zf=q('.zh-fields');zf.open=true;var anchorRow=q('#'+fid+'-title').closest('.row');anchorRow.parentNode.insertBefore(zf,anchorRow)}
     q('#'+fid+'-link').value=p.link||'';q('#'+fid+'-lbl').value=p.linkLabel||'';
     q('#'+fid+'-prob').value=p.problem||'';q('#'+fid+'-role').value=p.role||'';q('#'+fid+'-appr').value=p.approach||'';q('#'+fid+'-res').value=p.results||'';
-    var err=q('.m-err');function fail(m){err.textContent=m;err.hidden=false}
+    var err=q('.m-err');function fail(m){err.textContent=E(m);err.hidden=false}
     q('[data-cancel]').addEventListener('click',render);
     var del=q('[data-del]');
     if(del)del.addEventListener('click',function(){
-      if(del.dataset.armed!=='1'){del.dataset.armed='1';del.textContent='Tap again to delete';setTimeout(function(){if(del.isConnected){del.dataset.armed='';del.textContent='Delete project'}},3500);return}
+      if(del.dataset.armed!=='1'){del.dataset.armed='1';del.textContent=E('Tap again to delete');setTimeout(function(){if(del.isConnected){del.dataset.armed='';del.textContent=E('Delete project')}},3500);return}
       var next=clone(state);next.projects=next.projects.filter(function(x){return x.id!==p.id});
       var files={};(next.items[p.id]||[]).forEach(function(it){if(it.file)files[it.file]=null});if(p.cover&&p.cover.file)files[p.cover.file]=null;
       delete next.items[p.id];
-      lockForm(f,true,'Save');
-      save(next,files).then(function(ok){if(ok){render();toast('Project deleted.')}else{lockForm(f,false,'Save');fail(lastErr)}});
+      lockForm(f,true,E('Save'));
+      save(next,files).then(function(ok){if(ok){render();toast('Project deleted.')}else{lockForm(f,false,E('Save'));fail(lastErr)}});
     });
     f.addEventListener('submit',function(e){
       e.preventDefault();err.hidden=true;
@@ -1088,10 +1131,10 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
         next.projects=next.projects.filter(function(x){return x.id!==np.id});
         var L=-1;next.projects.forEach(function(x,i){if(x.section===np.section)L=i});next.projects.splice(L+1,0,np);
       }
-      lockForm(f,true,fl?'Uploading…':'Saving…');
+      lockForm(f,true,E(fl?'Uploading…':'Saving…'));
       save(next,files).then(function(ok){
         if(ok){render();toast(isNew?'Project added.':'Project saved.');var n=document.getElementById('p-'+np.id);if(n)n.scrollIntoView({block:'center',behavior:'smooth'})}
-        else{lockForm(f,false,'Save');fail(lastErr)}
+        else{lockForm(f,false,E('Save'));fail(lastErr)}
       });
     });
     if(anchor.classList&&anchor.classList.contains('card')){var w=el('div','card p-edit'+(p.featured?' feature':''));w.appendChild(f);anchor.replaceWith(w)}
@@ -1124,15 +1167,15 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     function sec(t,body){var x=el('div','d-sec');x.appendChild(el('h3',null,t));x.appendChild(body);inn.appendChild(x)}
     [['The problem','problem'],['My role','role'],['Approach','approach'],['Results','results']].forEach(function(k){
       if(p[k[1]])sec(T(k[0]),el('p',null,p[k[1]]));
-      else if(editing)sec(k[0],el('p','d-missing','Not filled in yet. Use Edit project to add it.'));
+      else if(editing)sec(k[0],el('p','d-missing',E('Not filled in yet. Use Edit project to add it.')));
     });
     if(p.features&&p.features.length){var ul=el('ul','feat');p.features.forEach(function(x){ul.appendChild(el('li',null,x))});sec(T('Highlights'),ul)}
     if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,TG(x)))});sec(T('Built with'),tg)}
     var media=el('div','media');media.style.display='grid';
     (state.items[p.id]||[]).forEach(function(it){media.appendChild(renderItem(p.id,it))});
-    if(editing){var add=el('button','m-add','+ Add video, image, link or note');add.type='button';add.addEventListener('click',function(){mediaForm(p.id,add)});media.appendChild(add)}
+    if(editing){var add=el('button','m-add',E('+ Add video, image, link or note'));add.type='button';add.addEventListener('click',function(){mediaForm(p.id,add)});media.appendChild(add)}
     if(media.childNodes.length)sec(T('Media & notes'),media);
-    if(editing){var eb=el('button','btn-ghost','Edit project');eb.type='button';eb.addEventListener('click',function(){closeDetail();var c=document.getElementById('p-'+p.id);if(c){projectForm(p0,c);var f=document.querySelector('.p-edit');if(f)f.scrollIntoView({block:'start'})}});inn.appendChild(eb)}
+    if(editing){var eb=el('button','btn-ghost',E('Edit project'));eb.type='button';eb.addEventListener('click',function(){closeDetail();var c=document.getElementById('p-'+p.id);if(c){projectForm(p0,c);var f=document.querySelector('.p-edit');if(f)f.scrollIntoView({block:'start'})}});inn.appendChild(eb)}
     dBody.appendChild(inn);
   }
 
@@ -1154,7 +1197,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     if(pf.email)row(T('EMAIL'),pf.email,null,true);
     if(safeUrl(pf.linkedin||''))row('LINKEDIN',host(pf.linkedin)+new URL(pf.linkedin).pathname.replace(/\/$/,''),safeUrl(pf.linkedin));
     if(safeUrl(pf.github||''))row('GITHUB',host(pf.github)+new URL(pf.github).pathname.replace(/\/$/,''),safeUrl(pf.github));
-    document.getElementById('editProfile').hidden=!editing;
+    var ep=document.getElementById('editProfile');ep.hidden=!editing;ep.textContent=E('Edit intro & contact');
   }
   function profileForm(){
     var pf=state.profile||{};var anchor=document.getElementById('editProfile');
@@ -1166,6 +1209,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       '<label>LinkedIn URL<input id="pr-li" type="url" placeholder="https://www.linkedin.com/in/…"></label>'+
       '<label>GitHub URL<input id="pr-gh" type="url" placeholder="https://github.com/…"></label>'+
       '<p class="m-err" hidden></p><div class="acts"><button type="button" data-cancel>Cancel</button><button type="submit">Save</button></div>';
+    trForm(f,'profile');
     var q=function(x){return f.querySelector(x)},err=q('.m-err');
     q('#pr-intro').value=pf.intro||'';q('#pr-intro-zh').value=pf.intro_zh||'';q('#pr-email').value=pf.email||'';q('#pr-li').value=pf.linkedin||'';q('#pr-gh').value=pf.github||'';
     q('[data-cancel]').addEventListener('click',function(){f.remove();anchor.hidden=false});
@@ -1174,8 +1218,8 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       var li=q('#pr-li').value.trim(),gh=q('#pr-gh').value.trim();
       if((li&&!safeUrl(li))||(gh&&!safeUrl(gh))){err.textContent='Links must start with https://';err.hidden=false;return}
       var next=clone(state);next.profile={intro:q('#pr-intro').value.trim(),intro_zh:q('#pr-intro-zh').value.trim(),email:q('#pr-email').value.trim(),linkedin:li?safeUrl(li):'',github:gh?safeUrl(gh):''};
-      lockForm(f,true,'Saving…');
-      save(next).then(function(ok){if(ok){f.remove();render();toast('Saved.')}else{lockForm(f,false,'Save');err.textContent=lastErr;err.hidden=false}});
+      lockForm(f,true,E('Saving…'));
+      save(next).then(function(ok){if(ok){f.remove();render();toast('Saved.')}else{lockForm(f,false,E('Save'));err.textContent=E(lastErr);err.hidden=false}});
     });
     anchor.hidden=true;anchor.parentNode.after(f);q('#pr-intro').focus();
   }
@@ -1188,7 +1232,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       var list=state.projects.filter(function(p){return p.section===sec});
       list.forEach(function(p,i){g.appendChild(card(p,i,list))});
       if(editing){
-        var add=el('button','p-add','+ Add a new project');add.type='button';
+        var add=el('button','p-add',E('+ Add a new project'));add.type='button';
         add.addEventListener('click',function(){projectForm({section:sec,tone:'build'},add)});
         g.appendChild(add);
       }
@@ -1199,7 +1243,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   }
 
   var editBtn=document.getElementById('editBtn');
-  function setEditing(on){editing=on;editBtn.setAttribute('aria-pressed',on?'true':'false');editBtn.textContent=on?'Done':'Edit';render()}
+  function setEditing(on){editing=on;editBtn.setAttribute('aria-pressed',on?'true':'false');editBtn.textContent=E(on?'Done':'Edit');render()}
   editBtn.addEventListener('click',function(){setEditing(!editing)});
 
   setLang(lang,true);

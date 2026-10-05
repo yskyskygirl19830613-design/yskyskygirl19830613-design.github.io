@@ -769,9 +769,26 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   try{var sl=localStorage.getItem('sc-lang');if(sl==='zh'||sl==='en')lang=sl}catch(e){}
   var UI={
     'Case study →':'專案介紹 →','Visit':'前往','Untitled':'未命名','The problem':'遇到的問題','My role':'我的角色','Approach':'做法','Results':'成果',
-    'Highlights':'重點功能','Built with':'使用技術','Media & notes':'影片與紀錄','item':'則','items':'則','Copy':'複製','Copied':'已複製','Close':'關閉'
+    'Highlights':'重點功能','Built with':'使用技術','Media & notes':'影片與紀錄','item':'則','items':'則','Copy':'複製','EMAIL':'電子郵件','Copied':'已複製','Close':'關閉'
   };
   function T(k){return lang==='zh'&&UI[k]?UI[k]:k}
+
+  var SVGT={"AUTO DRAFT":"自動草稿","DAY CLOSE":"天結案","SNAP":"拍照","SPEAK":"口述","TODAY'S AUDIT LIST":"今日待稽核清單",
+    "Etch line 03":"蝕刻線 03","Plating 07":"電鍍線 07","Laser 02":"雷射 02","Press 11":"壓合 11","DEFECT LIMIT 3%":"不良率上限 3%",
+    "AOI / LVI BY LOT":"各批次 AOI / LVI","PASS":"通過","HOLD":"暫停","QA REVIEW":"品保覆核","Lin Y. ○○":"林志○","MASK":"遮罩",
+    "≤ 30 CHARS · NO AMOUNTS":"≤ 30 字 · 不含金額","PUBLISH":"發布","TRIGGER":"觸發","SCHEDULE":"排件","SCRIPT":"腳本","DATABASE":"資料庫",
+    "AUTOMATION COVERAGE":"自動化覆蓋率","WO":"工單","LOT":"批號","REEL":"捲管","REEL USES":"捲管使用次數","HOUBIHU · KENTING":"後壁湖 · 墾丁",
+    "GO":"可下水","WAVES":"浪高","VIS":"能見度","WATER":"水溫","LOG THIS DIVE":"記錄這次潛水","DIVE PROFILE":"潛水剖面","MAX 18 m":"最深 18 m",
+    "SAFETY STOP":"安全停留","MONTHLY DCA · $50":"每月定期定額 · $50","BUY SIGNAL":"買點訊號","NEXT STASH DAY":"下次存糧日","Oct 15":"10 月 15 日",
+    "STASH":"糧倉","PHOTOGRAPHY":"攝影","SAT · 14:00":"週六 · 14:00","Booked ✓":"已預約 ✓","MATH · GRADE 8A":"數學 · 八上","TUTOR":"小老師",
+    "DAY STREAK":"天連續","UCL":"上限","LCL":"下限","REEL 1011-0427":"捲管 1011-0427","CHN":"國文","ENG":"英文","MATH":"數學","SCI":"自然","SOC":"社會"};
+  var TAGT={"Anonymization":"去識別化","Barcode":"條碼","Database":"資料庫","Scripting":"腳本自動化","Speech-to-text":"語音轉文字",
+    "Vision":"影像辨識","EdTech":"教育科技","Fintech education":"理財教育"};
+  function TG(x){return lang==='zh'&&TAGT[x]?TAGT[x]:x}
+  function localizeArt(node){
+    if(lang!=='zh')return;
+    node.querySelectorAll('text').forEach(function(t){var v=t.textContent.trim();if(SVGT[v])t.textContent=SVGT[v]});
+  }
   var STATIC={
     'Smart Factory':'智慧工廠','Projects':'個人作品','Experience':'經歷','Skills':'專長','Contact':'聯絡','DEPTH':'深度',
     'Kaohsiung, Taiwan · Smart Factory PM & Indie Builder':'台灣・高雄 · 智慧工廠專案課長｜App 開發',
@@ -942,7 +959,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   function coverNode(p){
     var shot=el('div','shot');
     if(p.cover&&p.cover.file){var im=document.createElement('img');im.alt='';im.src=fileSrc(p.cover.file);im.className='cover-img';shot.appendChild(im)}
-    else if(p.cover&&p.cover.art&&document.getElementById('art-'+p.cover.art)){shot.appendChild(document.getElementById('art-'+p.cover.art).content.cloneNode(true))}
+    else if(p.cover&&p.cover.art&&document.getElementById('art-'+p.cover.art)){var fr=document.getElementById('art-'+p.cover.art).content.cloneNode(true);localizeArt(fr);shot.appendChild(fr)}
     else{shot.classList.add('shot-blank');shot.appendChild(el('span',null,(p.title||'?').slice(0,1).toUpperCase()))}
     return shot;
   }
@@ -958,7 +975,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     b.appendChild(top);
     if(p.desc)b.appendChild(el('p',null,p.desc));
     if(p.features&&p.features.length){var ul=el('ul','feat');p.features.forEach(function(x){ul.appendChild(el('li',null,x))});b.appendChild(ul)}
-    if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,x))});b.appendChild(tg)}
+    if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,TG(x)))});b.appendChild(tg)}
     var acts=el('div','card-acts');
     var cs=el('button','btn-ghost',T('Case study →'));cs.type='button';cs.addEventListener('click',function(){openDetail(p.id)});acts.appendChild(cs);
     var lk=safeUrl(p.link||'');
@@ -1110,7 +1127,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       else if(editing)sec(k[0],el('p','d-missing','Not filled in yet. Use Edit project to add it.'));
     });
     if(p.features&&p.features.length){var ul=el('ul','feat');p.features.forEach(function(x){ul.appendChild(el('li',null,x))});sec(T('Highlights'),ul)}
-    if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,x))});sec(T('Built with'),tg)}
+    if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,TG(x)))});sec(T('Built with'),tg)}
     var media=el('div','media');media.style.display='grid';
     (state.items[p.id]||[]).forEach(function(it){media.appendChild(renderItem(p.id,it))});
     if(editing){var add=el('button','m-add','+ Add video, image, link or note');add.type='button';add.addEventListener('click',function(){mediaForm(p.id,add)});media.appendChild(add)}
@@ -1134,7 +1151,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       box.appendChild(r);
     }
     function sel(n){var rg=document.createRange();rg.selectNodeContents(n);var s=getSelection();s.removeAllRanges();s.addRange(rg);toast('Selected. Copy it with your keyboard or long-press.')}
-    if(pf.email)row('EMAIL',pf.email,null,true);
+    if(pf.email)row(T('EMAIL'),pf.email,null,true);
     if(safeUrl(pf.linkedin||''))row('LINKEDIN',host(pf.linkedin)+new URL(pf.linkedin).pathname.replace(/\/$/,''),safeUrl(pf.linkedin));
     if(safeUrl(pf.github||''))row('GITHUB',host(pf.github)+new URL(pf.github).pathname.replace(/\/$/,''),safeUrl(pf.github));
     document.getElementById('editProfile').hidden=!editing;

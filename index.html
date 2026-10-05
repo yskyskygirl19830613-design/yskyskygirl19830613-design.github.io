@@ -27,7 +27,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Noto+Serif+TC:wght@800&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;1,6..96,500&family=Noto+Serif+TC:wght@500;700;800&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
 /* Layout: a single descent — the page reads as a dive log, each section a deeper depth, with a brass gauge tracking depth on wide screens. Single committed dark (deep-sea) look. */
 :root{
@@ -243,6 +243,18 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
 .cv-box p+p{margin-top:8px}
 .cv-box small{display:block;color:var(--silt);font-size:.84rem}
 .d-missing{font-size:.82rem;color:var(--coral);font-family:var(--f-mono)}
+/* language toggle */
+.lang{display:inline-flex;margin-left:6px;border:1px solid var(--brass-dim);border-radius:999px;padding:2px;gap:2px}
+.lang button{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.04em;background:transparent;color:var(--silt);border:0;border-radius:999px;padding:4px 10px;cursor:pointer;line-height:1.2}
+.lang button[aria-pressed="true"]{background:var(--brass);color:var(--abyss)}
+.lang button:hover:not([aria-pressed="true"]){color:var(--foam)}
+.lang button:focus-visible{outline:none;box-shadow:0 0 0 2px var(--foam)}
+:root[lang="zh-Hant"]{--f-display:"Bodoni Moda","Noto Serif TC",Georgia,serif;--f-mono:"JetBrains Mono","Noto Sans TC",ui-monospace,Menlo,monospace}
+:root[lang="zh-Hant"] .depth h2,:root[lang="zh-Hant"] .d-head h2{font-weight:700;letter-spacing:.02em}
+:root[lang="zh-Hant"] .gauge-line,:root[lang="zh-Hant"] .skills h3,:root[lang="zh-Hant"] .cv-box h3,:root[lang="zh-Hant"] .d-sec h3{letter-spacing:.08em}
+:root[lang="zh-Hant"] .card h3 small,:root[lang="zh-Hant"] .d-head .sub{font-style:normal}
+.zh-fields{border:1px dashed var(--current);border-radius:8px;padding:8px 10px;display:grid;gap:8px}
+.zh-fields summary{cursor:pointer;font-family:var(--f-mono);font-size:.74rem;color:var(--brass)}
 </style>
 
 <header class="bar">
@@ -254,6 +266,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
+      <span class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="zh" aria-pressed="false" lang="zh-Hant">中文</button></span>
       <button class="edit-btn" id="editBtn" type="button" hidden>Edit</button>
     </nav>
   </div>
@@ -265,7 +278,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   <div class="val" id="gVal">0 m</div>
 </aside>
 
-<main id="top" lang="en">
+<main id="top">
   <div class="wrap">
     <section class="hero">
       <svg class="compass" viewBox="0 0 200 200" aria-hidden="true">
@@ -726,7 +739,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
             <text x="256" y="144" font-size="7" fill="#8ea6b4" text-anchor="middle">DAY STREAK</text>
             <g font-size="8" fill="#8ea6b4" text-anchor="middle"><text x="62" y="70">CHN</text><text x="62" y="90">ENG</text><text x="62" y="110" fill="#c9a24a">MATH</text><text x="62" y="130">SCI</text><text x="62" y="150">SOC</text></g>
           </svg></template>
-<script type="application/json" id="seed">{"version": 3, "projects": [{"id": "field-audit", "section": "factory", "title": "Field Audit Assistant", "subtitle": "", "status": "Prototype", "tone": "build", "desc": "Auditors photograph and narrate issues on the spot. The system drafts a traceable corrective-action record, and the fix closes within seven days.", "features": [], "tags": ["PWA", "Speech-to-text", "MES"], "cover": {"art": "field-audit"}, "problem": "Audit findings were written up by hand after each walk, details got lost along the way, and follow-up actions often slipped past their deadline.", "role": "Defined the requirements, wrote the IT spec and built the working mobile prototype.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "audit-dispatch", "section": "factory", "title": "Smart Audit Dispatch", "subtitle": "", "status": "Proposal", "tone": "plan", "desc": "Every morning, MES and SPC anomalies produce a ranked list of machines to audit and dispatch it to inspectors, so audits go where the problems are.", "features": [], "tags": ["MES", "SPC", "IPQC"], "cover": {"art": "audit-dispatch"}, "problem": "Inspectors audited machines on a fixed rotation, while machines already showing anomalies in MES and SPC were not prioritized.", "role": "Proposed the concept and wrote the requirements for management and IT review.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "ois", "section": "factory", "title": "OIS 2.0 Inspection Platform", "subtitle": "", "status": "Live", "tone": "live", "desc": "Led the inspection system's UI redesign and automated first-article inspection gating, rolled out across many production workstations.", "features": [], "tags": ["FAI", "IPQC", "AOI / LVI"], "cover": {"art": "ois"}, "problem": "Inspection navigation was hard to follow, and first-article results were passed along by hand without a link to the work order.", "role": "Led the UI redesign and first-article inspection improvements, and coordinated the rollout across workstations.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "hr-notice", "section": "factory", "title": "HR Notice Automation", "subtitle": "", "status": "In development", "tone": "build", "desc": "Automatically anonymizes names, condenses notice text and screens leave-document photos, with HR review kept for borderline cases.", "features": [], "tags": ["Anonymization", "Vision", "EIP"], "cover": {"art": "hr-notice"}, "problem": "Each monthly notice meant manually masking names, trimming text and checking leave documents one by one.", "role": "Turned the HR requirements into the functional and program specs, including the review rules.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "cam", "section": "factory", "title": "CAM Back-office Automation", "subtitle": "", "status": "Rolling out", "tone": "build", "desc": "Engineering jobs flow from scheduling through scripted processing to database write-back without manual hand-offs.", "features": [], "tags": ["WIP", "Scripting", "Database"], "cover": {"art": "cam"}, "problem": "Design staff repeated the same scheduling and scripting steps for every engineering job.", "role": "Defined the automation flow, tracked delivery and reported progress to leadership.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "material", "section": "factory", "title": "Material Error-proofing", "subtitle": "", "status": "Spec ready", "tone": "plan", "desc": "Binds work order, material lot and reel ID to replace hand labeling, tracks reel usage automatically, with an RFID roadmap.", "features": [], "tags": ["Barcode", "RFID", "MES / SAP"], "cover": {"art": "material"}, "problem": "Labels went missing or were swapped, thickness readings were copied by hand, and reel life was never recorded.", "role": "Defined the control rules and wrote the IT spec and data table definitions.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "subverse", "section": "personal", "featured": true, "title": "SubVerse", "subtitle": "Taiwan dive companion", "status": "Pre-launch", "tone": "build", "desc": "An all-in-one app for divers in Taiwan: trip prep, sea conditions, a digital dive log, a certification wallet, and a 3D underwater world you can actually swim through.", "features": ["\"Can I dive today?\" signal for each dive site", "Post-dive flying and altitude countdown", "Dive-computer import, replayed as a 3D track", "Marine-life collection unlocked by real dives"], "tags": ["Three.js 3D", "Capacitor", "Android + iOS", "Codemagic CI"], "cover": {"art": "subverse"}, "problem": "Divers in Taiwan check sea conditions, logs and certifications across scattered apps and websites.", "role": "Solo: product, design, development and app-store release.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "smartsats", "section": "personal", "title": "Smart Sats", "subtitle": "Bitcoin for beginners", "status": "Web app", "tone": "live", "desc": "A beginner's guide to Bitcoin dollar-cost averaging, led by Cong-Cong the squirrel. Practice with real historical prices before risking real money.", "features": ["Monthly DCA back-test simulator", "Pick your own indicators, check today's buy signal", "Stash log, winter mode, stash-day reminders"], "tags": ["EN / 繁中 / 日本語", "Fintech education"], "cover": {"art": "smartsats"}, "problem": "Beginners want to start with Bitcoin but don't know how dollar-cost averaging plays out or when to buy.", "role": "Solo: product, design and development.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "jiyu", "section": "personal", "title": "JiYu SkillMeet", "subtitle": "Skill exchange for Taiwan", "status": "Deployed", "tone": "live", "desc": "Teach someone photography, learn Excel in return. A PWA you add straight to your home screen.", "features": ["Full stack built from scratch", "Online payments and push notifications", "Shipped with every test scenario passing"], "tags": ["Supabase", "Vercel", "Stripe", "Web Push"], "cover": {"art": "jiyu"}, "problem": "Paid courses are expensive, while many people have a skill they would happily teach in exchange.", "role": "Solo: product, full-stack development and deployment.", "approach": "", "results": "", "link": "", "linkLabel": ""}, {"id": "cap", "section": "personal", "title": "CAP Tutor", "subtitle": "Junior-high exam practice", "status": "In development", "tone": "plan", "desc": "Practice for Taiwan's junior-high CAP exam across all five subjects, aligned to the current curriculum and organized by semester.", "features": ["A step-by-step tutor for every wrong answer", "Duolingo-style daily streaks", "Free for top-3 students in their school"], "tags": ["EdTech", "App Store", "Google Play"], "cover": {"art": "cap"}, "problem": "Students practice past exam questions but get little explanation of what they got wrong.", "role": "Solo: product definition, design and development.", "approach": "", "results": "", "link": "", "linkLabel": ""}], "items": {}, "profile": {"intro": "I'm a smart-manufacturing project manager in Kaohsiung, building inspection, audit and automation systems with production and IT teams at a flexible-PCB maker. Outside work, I design and ship my own apps for divers, new investors and students.", "email": "yskyskygirl19830613@gmail.com", "linkedin": "", "github": ""}}</script>
+<script type="application/json" id="seed">{"version": 4, "projects": [{"id": "field-audit", "section": "factory", "title": "Field Audit Assistant", "subtitle": "", "status": "Prototype", "tone": "build", "desc": "Auditors photograph and narrate issues on the spot. The system drafts a traceable corrective-action record, and the fix closes within seven days.", "features": [], "tags": ["PWA", "Speech-to-text", "MES"], "cover": {"art": "field-audit"}, "problem": "Audit findings were written up by hand after each walk, details got lost along the way, and follow-up actions often slipped past their deadline.", "role": "Defined the requirements, wrote the IT spec and built the working mobile prototype.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "現場稽核助手", "status": "原型", "desc": "稽核人員在現場拍照並口述問題，系統自動產生可追溯的改善單草稿，七天內完成改善結案。", "problem": "稽核發現都是巡完後才手寫整理，細節容易遺漏，後續改善也常超過期限。", "role": "定義需求、撰寫 IT 規格書，並做出可實際操作的手機版原型。"}}, {"id": "audit-dispatch", "section": "factory", "title": "Smart Audit Dispatch", "subtitle": "", "status": "Proposal", "tone": "plan", "desc": "Every morning, MES and SPC anomalies produce a ranked list of machines to audit and dispatch it to inspectors, so audits go where the problems are.", "features": [], "tags": ["MES", "SPC", "IPQC"], "cover": {"art": "audit-dispatch"}, "problem": "Inspectors audited machines on a fixed rotation, while machines already showing anomalies in MES and SPC were not prioritized.", "role": "Proposed the concept and wrote the requirements for management and IT review.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "智慧稽核派工", "status": "提案中", "desc": "每天早上依 MES 與 SPC 異常資料，自動排出待稽核機台清單並派工，讓稽核直接到有問題的地方。", "problem": "稽核人員依固定輪序巡查，已在 MES、SPC 出現異常的機台卻沒有被優先處理。", "role": "提出構想並撰寫需求文件，供主管與 IT 評估。"}}, {"id": "ois", "section": "factory", "title": "OIS 2.0 Inspection Platform", "subtitle": "", "status": "Live", "tone": "live", "desc": "Led the inspection system's UI redesign and automated first-article inspection gating, rolled out across many production workstations.", "features": [], "tags": ["FAI", "IPQC", "AOI / LVI"], "cover": {"art": "ois"}, "problem": "Inspection navigation was hard to follow, and first-article results were passed along by hand without a link to the work order.", "role": "Led the UI redesign and first-article inspection improvements, and coordinated the rollout across workstations.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "OIS 2.0 檢驗平台", "status": "已上線", "desc": "主導檢驗系統介面改版與首件檢驗自動卡控，並導入多個生產工站。", "problem": "檢驗操作動線不易理解，首件結果靠人工傳遞，也沒有和工單連動。", "role": "主導介面改版與首件檢驗優化，並協調各工站導入上線。"}}, {"id": "hr-notice", "section": "factory", "title": "HR Notice Automation", "subtitle": "", "status": "In development", "tone": "build", "desc": "Automatically anonymizes names, condenses notice text and screens leave-document photos, with HR review kept for borderline cases.", "features": [], "tags": ["Anonymization", "Vision", "EIP"], "cover": {"art": "hr-notice"}, "problem": "Each monthly notice meant manually masking names, trimming text and checking leave documents one by one.", "role": "Turned the HR requirements into the functional and program specs, including the review rules.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "獎懲公告自動化", "status": "開發中", "desc": "自動將姓名去識別化、精簡公告文字並審查請假證明照片，邊界案例保留人資人工覆核。", "problem": "每月公告都要人工遮罩姓名、刪修文字，並逐一檢查請假證明。", "role": "將人資需求轉成功能與程式規格書，包含審查規則。"}}, {"id": "cam", "section": "factory", "title": "CAM Back-office Automation", "subtitle": "", "status": "Rolling out", "tone": "build", "desc": "Engineering jobs flow from scheduling through scripted processing to database write-back without manual hand-offs.", "features": [], "tags": ["WIP", "Scripting", "Database"], "cover": {"art": "cam"}, "problem": "Design staff repeated the same scheduling and scripting steps for every engineering job.", "role": "Defined the automation flow, tracked delivery and reported progress to leadership.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "CAM 後台自動化", "status": "導入中", "desc": "工程資料從排件、腳本處理到資料庫回寫全程自動串接，不需人工交接。", "problem": "設計人員每一筆工程資料都要重複相同的排件與腳本步驟。", "role": "定義自動化流程、追蹤開發進度並向高階主管報告。"}}, {"id": "material", "section": "factory", "title": "Material Error-proofing", "subtitle": "", "status": "Spec ready", "tone": "plan", "desc": "Binds work order, material lot and reel ID to replace hand labeling, tracks reel usage automatically, with an RFID roadmap.", "features": [], "tags": ["Barcode", "RFID", "MES / SAP"], "cover": {"art": "material"}, "problem": "Labels went missing or were swapped, thickness readings were copied by hand, and reel life was never recorded.", "role": "Defined the control rules and wrote the IT spec and data table definitions.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "原材料防錯", "status": "規格完成", "desc": "以工單、材料批號與捲管 ID 三方綁定取代人工貼標，自動累計捲管使用次數，並規劃 RFID 導入。", "problem": "標籤遺失或貼錯、厚度靠人工抄錄，捲管壽命也沒有紀錄。", "role": "定義卡控規則，撰寫 IT 規格書與資料表定義。"}}, {"id": "subverse", "section": "personal", "featured": true, "title": "SubVerse", "subtitle": "Taiwan dive companion", "status": "Pre-launch", "tone": "build", "desc": "An all-in-one app for divers in Taiwan: trip prep, sea conditions, a digital dive log, a certification wallet, and a 3D underwater world you can actually swim through.", "features": ["\"Can I dive today?\" signal for each dive site", "Post-dive flying and altitude countdown", "Dive-computer import, replayed as a 3D track", "Marine-life collection unlocked by real dives"], "tags": ["Three.js 3D", "Capacitor", "Android + iOS", "Codemagic CI"], "cover": {"art": "subverse"}, "problem": "Divers in Taiwan check sea conditions, logs and certifications across scattered apps and websites.", "role": "Solo: product, design, development and app-store release.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "潛境 SubVerse", "subtitle": "台灣潛水夥伴", "status": "上架準備中", "desc": "給台灣潛水愛好者的一站式 App：行前準備、海況、電子潛水日誌、證照錢包，還有可以實際游動的 3D 水下世界。", "features": ["每個潛點的「今天能不能下水」燈號", "潛後搭機與上山安全倒數", "匯入潛水電腦錶，重播成 3D 航跡", "真實潛水解鎖海洋生物圖鑑"], "problem": "台灣潛水員要查海況、記日誌、帶證照，資訊散在各個 App 和網站。", "role": "一人完成：產品、設計、開發與上架。"}}, {"id": "smartsats", "section": "personal", "title": "Smart Sats", "subtitle": "Bitcoin for beginners", "status": "Web app", "tone": "live", "desc": "A beginner's guide to Bitcoin dollar-cost averaging, led by Cong-Cong the squirrel. Practice with real historical prices before risking real money.", "features": ["Monthly DCA back-test simulator", "Pick your own indicators, check today's buy signal", "Stash log, winter mode, stash-day reminders"], "tags": ["EN / 繁中 / 日本語", "Fintech education"], "cover": {"art": "smartsats"}, "problem": "Beginners want to start with Bitcoin but don't know how dollar-cost averaging plays out or when to buy.", "role": "Solo: product, design and development.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "聰明鼠 Smart Sats", "subtitle": "比特幣新手入門", "status": "網頁版", "desc": "由松鼠「聰聰」帶路的比特幣定期定額教學，先用真實歷史價格練習，再決定要不要投入真錢。", "features": ["每月定期定額回測模擬", "自選技術指標，查看今天是否到買點", "糧倉買入紀錄、冬天模式、存糧日提醒"], "problem": "新手想開始買比特幣，卻不知道定期定額的實際效果，也不知道何時該買。", "role": "一人完成：產品、設計與開發。"}}, {"id": "jiyu", "section": "personal", "title": "JiYu SkillMeet", "subtitle": "Skill exchange for Taiwan", "status": "Deployed", "tone": "live", "desc": "Teach someone photography, learn Excel in return. A PWA you add straight to your home screen.", "features": ["Full stack built from scratch", "Online payments and push notifications", "Shipped with every test scenario passing"], "tags": ["Supabase", "Vercel", "Stripe", "Web Push"], "cover": {"art": "jiyu"}, "problem": "Paid courses are expensive, while many people have a skill they would happily teach in exchange.", "role": "Solo: product, full-stack development and deployment.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "技遇 JiYu SkillMeet", "subtitle": "台灣技能交換平台", "status": "已上線", "desc": "你教我攝影，我教你 Excel。PWA 形式，加到手機主畫面就能用。", "features": ["從零打造全端架構", "線上金流與推播通知", "所有測試情境通過後上線"], "problem": "付費課程很貴，但很多人都有願意拿來交換的專長。", "role": "一人完成：產品、全端開發與部署。"}}, {"id": "cap", "section": "personal", "title": "CAP Tutor", "subtitle": "Junior-high exam practice", "status": "In development", "tone": "plan", "desc": "Practice for Taiwan's junior-high CAP exam across all five subjects, aligned to the current curriculum and organized by semester.", "features": ["A step-by-step tutor for every wrong answer", "Duolingo-style daily streaks", "Free for top-3 students in their school"], "tags": ["EdTech", "App Store", "Google Play"], "cover": {"art": "cap"}, "problem": "Students practice past exam questions but get little explanation of what they got wrong.", "role": "Solo: product definition, design and development.", "approach": "", "results": "", "link": "", "linkLabel": "", "zh": {"title": "錯題小老師", "subtitle": "國中會考練習", "status": "開發中", "desc": "依現行課綱整理國、英、數、自、社五科會考練習，按學期分冊複習。", "features": ["每道錯題都有逐步解說的小老師", "像 Duolingo 一樣的每日連續挑戰", "全校前三名可免費使用"], "problem": "學生練了很多考古題，卻很少得到錯在哪裡的解說。", "role": "一人完成：產品定義、設計與開發。"}}], "items": {}, "profile": {"intro": "I'm a smart-manufacturing project manager in Kaohsiung, building inspection, audit and automation systems with production and IT teams at a flexible-PCB maker. Outside work, I design and ship my own apps for divers, new investors and students.", "email": "yskyskygirl19830613@gmail.com", "linkedin": "", "github": "", "intro_zh": "我是高雄的智慧工廠專案課長，在軟板製造廠與生產及 IT 團隊一起建置檢驗、稽核與自動化系統。工作之外，我自己設計並開發給潛水員、投資新手和學生使用的 App。"}}</script>
 
 <footer>
   <div class="wrap">
@@ -750,6 +763,76 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
 /* Projects and their media, all editable by the owner and saved as data/site.json */
 (function(){
   var state=JSON.parse(document.getElementById('seed').textContent);
+
+  /* ---------- language ---------- */
+  var lang='en';
+  try{var sl=localStorage.getItem('sc-lang');if(sl==='zh'||sl==='en')lang=sl}catch(e){}
+  var UI={
+    'Case study →':'專案介紹 →','Visit':'前往','Untitled':'未命名','The problem':'遇到的問題','My role':'我的角色','Approach':'做法','Results':'成果',
+    'Highlights':'重點功能','Built with':'使用技術','Media & notes':'影片與紀錄','item':'則','items':'則','Copy':'複製','Copied':'已複製','Close':'關閉'
+  };
+  function T(k){return lang==='zh'&&UI[k]?UI[k]:k}
+  var STATIC={
+    'Smart Factory':'智慧工廠','Projects':'個人作品','Experience':'經歷','Skills':'專長','Contact':'聯絡','DEPTH':'深度',
+    'Kaohsiung, Taiwan · Smart Factory PM & Indie Builder':'台灣・高雄 · 智慧工廠專案課長｜App 開發',
+    'Get in touch':'與我聯絡',' smart-factory projects':' 個智慧工廠專案',' personal products':' 項個人作品',' languages shipped':' 種語言版本',
+    'Smart Factory Work':'智慧工廠專案',
+    '* Concepts and my role only. Illustrations are schematic; internal screens and data are not shown.':'※ 僅呈現專案概念與我負責的角色；圖片為示意圖，不含公司內部畫面與數據。',
+    'Personal Projects':'個人作品','Idea, spec, design and launch, carried end to end by one person.':'從構想、規格、設計到上線，一個人完成。',
+    'Twenty years across semiconductor packaging, the army and flexible-PCB manufacturing.':'二十年經歷，橫跨半導體封測、軍旅與軟板製造。',
+    '2013 – PRESENT':'2013 – 至今','Smart Factory Project Section Manager':'智慧工廠專案課長','FLEXium Interconnect · Kaohsiung':'台郡科技 · 高雄',
+    'Started in design, then moved into project management for the smart factory: inspection, audit and automation systems built with production and IT teams.':'從設計起步，轉任智慧工廠專案管理，與生產及 IT 團隊一起建置檢驗、稽核與自動化系統。',
+    ' Highlight Award · 1st':' 亮點獎 · 第一名',' Highlight Award · 2nd':' 亮點獎 · 第二名',' Highlight Award · 3rd':' 亮點獎 · 第三名',' Outstanding Employee':' 優秀員工',
+    'Captain, IT Officer':'上尉資訊官','Army Artillery School, Taiwan':'陸軍砲兵學校','Product Engineer':'產品工程師','ASE Group':'日月光集團',
+    'Education':'學歷','National Kaohsiung University of Applied Sciences':'國立高雄應用科技大學','Electronic Engineering':'電子工程系',
+    'Certifications':'證照','Project Management Professional (PMP)':'PMP 國際專案管理師','Project Management Institute':'美國專案管理學會 PMI','Open Water Scuba Diver':'開放水域潛水員',
+    'What I Do':'我擅長的事','I work between the production floor and IT and make sure each side understands the other.':'我站在生產現場與 IT 之間，讓雙方彼此理解。',
+    'Product & PM':'產品與專案管理','Requirements interviews to IT specs':'從需求訪談到 IT 規格書','Proposals and executive reporting':'提案簡報與高階主管報告','MVP pilots and rollouts':'MVP 試行與導入上線',
+    'Manufacturing & Quality':'製造與品質','First-article inspection and process audits':'首件檢驗與製程稽核','NPI workflow improvement':'NPI 製前流程改善',
+    'Building':'開發','Workflow automation':'流程自動化','Shipping to Google Play and the App Store':'上架 Google Play 與 App Store',
+    'Open to conversations about smart manufacturing, product work and side-project collaborations.':'歡迎交流智慧製造、產品開發與 side project 合作。',
+    '22.6°N 120.3°E · Kaohsiung':'22.6°N 120.3°E · 高雄'
+  };
+  var staticNodes=null;
+  function collectStatic(){
+    staticNodes=[];
+    var skip=['grid-factory','grid-personal','intro','contactBox','detail','editBtn','editProfile'];
+    [document.querySelector('header.bar'),document.querySelector('aside.side-gauge'),document.getElementById('top'),document.querySelector('footer')].forEach(function(root){
+      if(!root)return;
+      var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+        for(var e=n.parentNode;e&&e!==root.parentNode;e=e.parentNode){
+          if(e.id&&skip.indexOf(e.id)>=0)return NodeFilter.FILTER_REJECT;
+          var tg=(e.tagName||'').toLowerCase();if(tg==='script'||tg==='style'||tg==='svg')return NodeFilter.FILTER_REJECT;
+        }
+        var t=n.nodeValue;return (STATIC[t]||STATIC[t.trim()])?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT}});
+      var n;while((n=w.nextNode()))staticNodes.push({n:n,en:n.nodeValue});
+    });
+  }
+  function applyStatic(){
+    if(!staticNodes)collectStatic();
+    staticNodes.forEach(function(x){
+      if(lang==='en'){x.n.nodeValue=x.en;return}
+      var t=x.en;
+      if(STATIC[t]){x.n.nodeValue=STATIC[t];return}
+      var k=t.trim();x.n.nodeValue=t.replace(k,STATIC[k]);
+    });
+  }
+  function loc(p){
+    if(lang!=='zh'||!p.zh)return p;
+    var v={},k;for(k in p)v[k]=p[k];
+    for(k in p.zh){var z=p.zh[k];if(Array.isArray(z)?z.length:z)v[k]=z}
+    return v;
+  }
+  function setLang(l,silent){
+    lang=l;try{localStorage.setItem('sc-lang',l)}catch(e){}
+    document.documentElement.setAttribute('lang',l==='zh'?'zh-Hant':'en');
+    document.title=l==='zh'?'Susan Chiu 作品集':'Susan Chiu Portfolio';
+    document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l?'true':'false')});
+    var dc=document.getElementById('dClose');if(dc)dc.setAttribute('aria-label',T('Close'));
+    applyStatic();
+    if(!silent)render();
+  }
+  document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){if(b.dataset.lang!==lang)setLang(b.dataset.lang)})});
   var editing=false, art=null, blobUrls={}, lastErr='';
   var MAX=15*1024*1024;
   var TONES={live:'Live / done',build:'In progress',plan:'Planned / idea'};
@@ -864,11 +947,12 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     return shot;
   }
 
-  function card(p,idx,list){
+  function card(p0,idx,list){
+    var p=loc(p0);
     var a=el('article','card'+(p.featured?' feature':''));a.id='p-'+p.id;
     var cv=coverNode(p);cv.addEventListener('click',function(){openDetail(p.id)});a.appendChild(cv);
     var b=el('div','body');
-    var top=el('div','card-top');var h=el('h3',null,p.title||'Untitled');
+    var top=el('div','card-top');var h=el('h3',null,p.title||T('Untitled'));
     if(p.subtitle)h.appendChild(el('small',null,p.subtitle));
     top.appendChild(h);if(p.status)top.appendChild(el('span','chip '+(p.tone||'plan'),p.status));
     b.appendChild(top);
@@ -876,14 +960,14 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     if(p.features&&p.features.length){var ul=el('ul','feat');p.features.forEach(function(x){ul.appendChild(el('li',null,x))});b.appendChild(ul)}
     if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,x))});b.appendChild(tg)}
     var acts=el('div','card-acts');
-    var cs=el('button','btn-ghost','Case study →');cs.type='button';cs.addEventListener('click',function(){openDetail(p.id)});acts.appendChild(cs);
+    var cs=el('button','btn-ghost',T('Case study →'));cs.type='button';cs.addEventListener('click',function(){openDetail(p.id)});acts.appendChild(cs);
     var lk=safeUrl(p.link||'');
-    if(lk){var tl=el('a','btn-pri',(p.linkLabel||'Visit')+' ↗');tl.href=lk;tl.target='_blank';tl.rel='noopener';acts.appendChild(tl)}
-    var n=(state.items[p.id]||[]).length;if(n)acts.appendChild(el('span','m-count',n+(n===1?' item':' items')));
+    if(lk){var tl=el('a','btn-pri',(p.linkLabel||T('Visit'))+' ↗');tl.href=lk;tl.target='_blank';tl.rel='noopener';acts.appendChild(tl)}
+    var n=(state.items[p.id]||[]).length;if(n)acts.appendChild(el('span','m-count',n+' '+T(n===1?'item':'items')));
     b.appendChild(acts);
     if(editing){
       var bar=el('div','p-tools');
-      var eb=el('button',null,'Edit project');eb.type='button';eb.addEventListener('click',function(){projectForm(p,a)});
+      var eb=el('button',null,'Edit project');eb.type='button';eb.addEventListener('click',function(){projectForm(p0,a)});
       var up=el('button',null,'↑');up.type='button';up.setAttribute('aria-label','Move up');up.disabled=idx===0;up.addEventListener('click',function(){move(p.id,-1)});
       var dn=el('button',null,'↓');dn.type='button';dn.setAttribute('aria-label','Move down');dn.disabled=idx===list.length-1;dn.addEventListener('click',function(){move(p.id,1)});
       bar.appendChild(eb);bar.appendChild(up);bar.appendChild(dn);b.appendChild(bar);
@@ -919,6 +1003,17 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       '<label>Results<textarea id="'+fid+'-res" maxlength="800" placeholder="e.g. Cut report time from 30 to 5 minutes; rolled out to 29 workstations"></textarea></label>'+
       '<label>Highlights (one per line)<textarea id="'+fid+'-feat" maxlength="1200"></textarea></label>'+
       '<label>Tags (separate with commas)<input id="'+fid+'-tags" type="text" maxlength="200" placeholder="e.g. PWA, MES, Supabase"></label>'+
+      '<details class="zh-fields"><summary>中文版內容（選填，切換到中文時顯示）</summary>'+
+      '<div class="row"><label>名稱<input id="'+fid+'-zt" type="text" maxlength="80"></label><label>副標題<input id="'+fid+'-zs" type="text" maxlength="80"></label></div>'+
+      '<label>狀態<input id="'+fid+'-zst" type="text" maxlength="24" placeholder="例如：已上線、開發中"></label>'+
+      '<label>簡介<textarea id="'+fid+'-zd" maxlength="400"></textarea></label>'+
+      '<label>遇到的問題<textarea id="'+fid+'-zp" maxlength="600"></textarea></label>'+
+      '<label>我的角色<textarea id="'+fid+'-zr" maxlength="400"></textarea></label>'+
+      '<label>做法<textarea id="'+fid+'-za" maxlength="800"></textarea></label>'+
+      '<label>成果<textarea id="'+fid+'-zres" maxlength="600"></textarea></label>'+
+      '<label>重點功能（一行一點）<textarea id="'+fid+'-zf" maxlength="1000"></textarea></label>'+
+      '<label>按鈕文字<input id="'+fid+'-zl" type="text" maxlength="16" placeholder="例如：試用、前往"></label>'+
+      '</details>'+
       '<label>Cover image<input id="'+fid+'-cover" type="file" accept="image/png,image/jpeg,image/webp,image/gif"></label>'+
       '<p class="m-hint">'+(isNew?'Optional. Without one, the card shows a simple initial.':'Leave empty to keep the current cover.')+'</p>'+
       (!isNew&&p.cover&&p.cover.file?'<label class="chk"><input id="'+fid+'-rmcover" type="checkbox"> Remove uploaded cover'+(p.cover.art?' (back to the illustration)':'')+'</label>':'')+
@@ -930,6 +1025,10 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     q('#'+fid+'-title').value=p.title||'';q('#'+fid+'-sub').value=p.subtitle||'';q('#'+fid+'-status').value=p.status||'';
     q('#'+fid+'-desc').value=p.desc||'';q('#'+fid+'-feat').value=(p.features||[]).join('\n');q('#'+fid+'-tags').value=(p.tags||[]).join(', ');
     q('#'+fid+'-feat-wide').checked=!!p.featured;
+    var zp=p.zh||{};q('#'+fid+'-zt').value=zp.title||'';q('#'+fid+'-zs').value=zp.subtitle||'';q('#'+fid+'-zst').value=zp.status||'';q('#'+fid+'-zd').value=zp.desc||'';
+    q('#'+fid+'-zp').value=zp.problem||'';q('#'+fid+'-zr').value=zp.role||'';q('#'+fid+'-za').value=zp.approach||'';q('#'+fid+'-zres').value=zp.results||'';
+    q('#'+fid+'-zf').value=(zp.features||[]).join('\n');q('#'+fid+'-zl').value=zp.linkLabel||'';
+    if(lang==='zh')q('.zh-fields').open=true;
     q('#'+fid+'-link').value=p.link||'';q('#'+fid+'-lbl').value=p.linkLabel||'';
     q('#'+fid+'-prob').value=p.problem||'';q('#'+fid+'-role').value=p.role||'';q('#'+fid+'-appr').value=p.approach||'';q('#'+fid+'-res').value=p.results||'';
     var err=q('.m-err');function fail(m){err.textContent=m;err.hidden=false}
@@ -956,6 +1055,9 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
       np.features=q('#'+fid+'-feat').value.split('\n').map(function(x){return x.trim()}).filter(Boolean);
       np.tags=q('#'+fid+'-tags').value.split(/[,，、]/).map(function(x){return x.trim()}).filter(Boolean);
       np.featured=q('#'+fid+'-feat-wide').checked;
+      var zv=function(id){return q('#'+fid+'-'+id).value.trim()};
+      np.zh={title:zv('zt'),subtitle:zv('zs'),status:zv('zst'),desc:zv('zd'),problem:zv('zp'),role:zv('zr'),approach:zv('za'),results:zv('zres'),linkLabel:zv('zl'),
+        features:q('#'+fid+'-zf').value.split('\n').map(function(x){return x.trim()}).filter(Boolean)};
       np.link=lv?safeUrl(lv):'';np.linkLabel=q('#'+fid+'-lbl').value.trim();
       np.problem=q('#'+fid+'-prob').value.trim();np.role=q('#'+fid+'-role').value.trim();np.approach=q('#'+fid+'-appr').value.trim();np.results=q('#'+fid+'-res').value.trim();
       np.cover=np.cover||{};
@@ -990,44 +1092,45 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   dEl.addEventListener('click',function(e){if(e.target===dEl)closeDetail()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!dEl.hidden)closeDetail()});
   function renderDetail(){
-    var p=state.projects.filter(function(x){return x.id===openId})[0];
-    if(!p){closeDetail();return}
+    var p0=state.projects.filter(function(x){return x.id===openId})[0];
+    if(!p0){closeDetail();return}
+    var p=loc(p0);
     dBody.textContent='';
     var cv=coverNode(p);cv.className=cv.className.replace('shot','d-cover');dBody.appendChild(cv);
     var inn=el('div','d-in');
-    var hd=el('div','d-head');var h=el('h2',null,p.title||'Untitled');h.id='dTitle';hd.appendChild(h);
+    var hd=el('div','d-head');var h=el('h2',null,p.title||T('Untitled'));h.id='dTitle';hd.appendChild(h);
     if(p.subtitle)hd.appendChild(el('div','sub',p.subtitle));
     var row=el('div','row');if(p.status)row.appendChild(el('span','chip '+(p.tone||'plan'),p.status));
-    var lk=safeUrl(p.link||'');if(lk){var a=el('a','btn-pri',(p.linkLabel||'Visit')+' ↗');a.href=lk;a.target='_blank';a.rel='noopener';row.appendChild(a)}
+    var lk=safeUrl(p.link||'');if(lk){var a=el('a','btn-pri',(p.linkLabel||T('Visit'))+' ↗');a.href=lk;a.target='_blank';a.rel='noopener';row.appendChild(a)}
     hd.appendChild(row);inn.appendChild(hd);
     if(p.desc)inn.appendChild(el('p','d-lead',p.desc));
     function sec(t,body){var x=el('div','d-sec');x.appendChild(el('h3',null,t));x.appendChild(body);inn.appendChild(x)}
     [['The problem','problem'],['My role','role'],['Approach','approach'],['Results','results']].forEach(function(k){
-      if(p[k[1]])sec(k[0],el('p',null,p[k[1]]));
+      if(p[k[1]])sec(T(k[0]),el('p',null,p[k[1]]));
       else if(editing)sec(k[0],el('p','d-missing','Not filled in yet. Use Edit project to add it.'));
     });
-    if(p.features&&p.features.length){var ul=el('ul','feat');p.features.forEach(function(x){ul.appendChild(el('li',null,x))});sec('Highlights',ul)}
-    if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,x))});sec('Built with',tg)}
+    if(p.features&&p.features.length){var ul=el('ul','feat');p.features.forEach(function(x){ul.appendChild(el('li',null,x))});sec(T('Highlights'),ul)}
+    if(p.tags&&p.tags.length){var tg=el('div','tags');p.tags.forEach(function(x){tg.appendChild(el('span',null,x))});sec(T('Built with'),tg)}
     var media=el('div','media');media.style.display='grid';
     (state.items[p.id]||[]).forEach(function(it){media.appendChild(renderItem(p.id,it))});
     if(editing){var add=el('button','m-add','+ Add video, image, link or note');add.type='button';add.addEventListener('click',function(){mediaForm(p.id,add)});media.appendChild(add)}
-    if(media.childNodes.length)sec('Media & notes',media);
-    if(editing){var eb=el('button','btn-ghost','Edit project');eb.type='button';eb.addEventListener('click',function(){closeDetail();var c=document.getElementById('p-'+p.id);if(c){projectForm(p,c);var f=document.querySelector('.p-edit');if(f)f.scrollIntoView({block:'start'})}});inn.appendChild(eb)}
+    if(media.childNodes.length)sec(T('Media & notes'),media);
+    if(editing){var eb=el('button','btn-ghost','Edit project');eb.type='button';eb.addEventListener('click',function(){closeDetail();var c=document.getElementById('p-'+p.id);if(c){projectForm(p0,c);var f=document.querySelector('.p-edit');if(f)f.scrollIntoView({block:'start'})}});inn.appendChild(eb)}
     dBody.appendChild(inn);
   }
 
   /* ---------- intro & contact ---------- */
   function renderProfile(){
     var pf=state.profile||{};
-    document.getElementById('intro').textContent=pf.intro||'';
+    document.getElementById('intro').textContent=(lang==='zh'&&pf.intro_zh)?pf.intro_zh:(pf.intro||'');
     var box=document.getElementById('contactBox');box.textContent='';
     function row(lbl,val,href,copy){
       var r=el('div','c-row');r.appendChild(el('span','lbl',lbl));
       var v=el(href?'a':'span','val',val);if(href){v.href=href;v.target='_blank';v.rel='noopener'}r.appendChild(v);
-      if(copy){var c=el('button',null,'Copy');c.type='button';c.addEventListener('click',function(){
-        function done(){c.textContent='Copied'}
+      if(copy){var c=el('button',null,T('Copy'));c.type='button';c.addEventListener('click',function(){
+        function done(){c.textContent=T('Copied')}
         try{navigator.clipboard.writeText(val).then(done,function(){sel(v)})}catch(e){sel(v)}
-        setTimeout(function(){c.textContent='Copy'},2000)});r.appendChild(c)}
+        setTimeout(function(){c.textContent=T('Copy')},2000)});r.appendChild(c)}
       box.appendChild(r);
     }
     function sel(n){var rg=document.createRange();rg.selectNodeContents(n);var s=getSelection();s.removeAllRanges();s.addRange(rg);toast('Selected. Copy it with your keyboard or long-press.')}
@@ -1041,18 +1144,19 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
     var f=el('form','m-form');f.style.maxWidth='640px';f.style.marginTop='20px';
     f.innerHTML='<p class="p-form-h">Intro &amp; contact</p>'+
       '<label>Short intro<textarea id="pr-intro" maxlength="500"></textarea></label>'+
+      '<label>Short intro · 中文<textarea id="pr-intro-zh" maxlength="400"></textarea></label>'+
       '<label>Email<input id="pr-email" type="email" maxlength="120"></label>'+
       '<label>LinkedIn URL<input id="pr-li" type="url" placeholder="https://www.linkedin.com/in/…"></label>'+
       '<label>GitHub URL<input id="pr-gh" type="url" placeholder="https://github.com/…"></label>'+
       '<p class="m-err" hidden></p><div class="acts"><button type="button" data-cancel>Cancel</button><button type="submit">Save</button></div>';
     var q=function(x){return f.querySelector(x)},err=q('.m-err');
-    q('#pr-intro').value=pf.intro||'';q('#pr-email').value=pf.email||'';q('#pr-li').value=pf.linkedin||'';q('#pr-gh').value=pf.github||'';
+    q('#pr-intro').value=pf.intro||'';q('#pr-intro-zh').value=pf.intro_zh||'';q('#pr-email').value=pf.email||'';q('#pr-li').value=pf.linkedin||'';q('#pr-gh').value=pf.github||'';
     q('[data-cancel]').addEventListener('click',function(){f.remove();anchor.hidden=false});
     f.addEventListener('submit',function(e){
       e.preventDefault();err.hidden=true;
       var li=q('#pr-li').value.trim(),gh=q('#pr-gh').value.trim();
       if((li&&!safeUrl(li))||(gh&&!safeUrl(gh))){err.textContent='Links must start with https://';err.hidden=false;return}
-      var next=clone(state);next.profile={intro:q('#pr-intro').value.trim(),email:q('#pr-email').value.trim(),linkedin:li?safeUrl(li):'',github:gh?safeUrl(gh):''};
+      var next=clone(state);next.profile={intro:q('#pr-intro').value.trim(),intro_zh:q('#pr-intro-zh').value.trim(),email:q('#pr-email').value.trim(),linkedin:li?safeUrl(li):'',github:gh?safeUrl(gh):''};
       lockForm(f,true,'Saving…');
       save(next).then(function(ok){if(ok){f.remove();render();toast('Saved.')}else{lockForm(f,false,'Save');err.textContent=lastErr;err.hidden=false}});
     });
@@ -1081,6 +1185,7 @@ a.val:hover,a.val:focus-visible{color:var(--brass);outline:none}
   function setEditing(on){editing=on;editBtn.setAttribute('aria-pressed',on?'true':'false');editBtn.textContent=on?'Done':'Edit';render()}
   editBtn.addEventListener('click',function(){setEditing(!editing)});
 
+  setLang(lang,true);
   render();
   var h0=(location.hash||'').slice(1);
   function tryHash(){if(h0&&state.projects.some(function(x){return x.id===h0})&&!openId){openDetail(h0)}}

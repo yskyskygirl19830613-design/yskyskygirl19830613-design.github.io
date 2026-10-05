@@ -1,5 +1,5 @@
 {
- "version": 3,
+ "version": 4,
  "projects": [
   {
    "id": "field-audit",
@@ -23,7 +23,14 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "現場稽核助手",
+    "status": "原型",
+    "desc": "稽核人員在現場拍照並口述問題，系統自動產生可追溯的改善單草稿，七天內完成改善結案。",
+    "problem": "稽核發現都是巡完後才手寫整理，細節容易遺漏，後續改善也常超過期限。",
+    "role": "定義需求、撰寫 IT 規格書，並做出可實際操作的手機版原型。"
+   }
   },
   {
    "id": "audit-dispatch",
@@ -47,7 +54,14 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "智慧稽核派工",
+    "status": "提案中",
+    "desc": "每天早上依 MES 與 SPC 異常資料，自動排出待稽核機台清單並派工，讓稽核直接到有問題的地方。",
+    "problem": "稽核人員依固定輪序巡查，已在 MES、SPC 出現異常的機台卻沒有被優先處理。",
+    "role": "提出構想並撰寫需求文件，供主管與 IT 評估。"
+   }
   },
   {
    "id": "ois",
@@ -71,7 +85,14 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "OIS 2.0 檢驗平台",
+    "status": "已上線",
+    "desc": "主導檢驗系統介面改版與首件檢驗自動卡控，並導入多個生產工站。",
+    "problem": "檢驗操作動線不易理解，首件結果靠人工傳遞，也沒有和工單連動。",
+    "role": "主導介面改版與首件檢驗優化，並協調各工站導入上線。"
+   }
   },
   {
    "id": "hr-notice",
@@ -95,7 +116,14 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "獎懲公告自動化",
+    "status": "開發中",
+    "desc": "自動將姓名去識別化、精簡公告文字並審查請假證明照片，邊界案例保留人資人工覆核。",
+    "problem": "每月公告都要人工遮罩姓名、刪修文字，並逐一檢查請假證明。",
+    "role": "將人資需求轉成功能與程式規格書，包含審查規則。"
+   }
   },
   {
    "id": "cam",
@@ -119,7 +147,14 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "CAM 後台自動化",
+    "status": "導入中",
+    "desc": "工程資料從排件、腳本處理到資料庫回寫全程自動串接，不需人工交接。",
+    "problem": "設計人員每一筆工程資料都要重複相同的排件與腳本步驟。",
+    "role": "定義自動化流程、追蹤開發進度並向高階主管報告。"
+   }
   },
   {
    "id": "material",
@@ -143,7 +178,14 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "原材料防錯",
+    "status": "規格完成",
+    "desc": "以工單、材料批號與捲管 ID 三方綁定取代人工貼標，自動累計捲管使用次數，並規劃 RFID 導入。",
+    "problem": "標籤遺失或貼錯、厚度靠人工抄錄，捲管壽命也沒有紀錄。",
+    "role": "定義卡控規則，撰寫 IT 規格書與資料表定義。"
+   }
   },
   {
    "id": "subverse",
@@ -174,7 +216,21 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "潛境 SubVerse",
+    "subtitle": "台灣潛水夥伴",
+    "status": "上架準備中",
+    "desc": "給台灣潛水愛好者的一站式 App：行前準備、海況、電子潛水日誌、證照錢包，還有可以實際游動的 3D 水下世界。",
+    "features": [
+     "每個潛點的「今天能不能下水」燈號",
+     "潛後搭機與上山安全倒數",
+     "匯入潛水電腦錶，重播成 3D 航跡",
+     "真實潛水解鎖海洋生物圖鑑"
+    ],
+    "problem": "台灣潛水員要查海況、記日誌、帶證照，資訊散在各個 App 和網站。",
+    "role": "一人完成：產品、設計、開發與上架。"
+   }
   },
   {
    "id": "smartsats",
@@ -201,7 +257,20 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "聰明鼠 Smart Sats",
+    "subtitle": "比特幣新手入門",
+    "status": "網頁版",
+    "desc": "由松鼠「聰聰」帶路的比特幣定期定額教學，先用真實歷史價格練習，再決定要不要投入真錢。",
+    "features": [
+     "每月定期定額回測模擬",
+     "自選技術指標，查看今天是否到買點",
+     "糧倉買入紀錄、冬天模式、存糧日提醒"
+    ],
+    "problem": "新手想開始買比特幣，卻不知道定期定額的實際效果，也不知道何時該買。",
+    "role": "一人完成：產品、設計與開發。"
+   }
   },
   {
    "id": "jiyu",
@@ -230,7 +299,20 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "技遇 JiYu SkillMeet",
+    "subtitle": "台灣技能交換平台",
+    "status": "已上線",
+    "desc": "你教我攝影，我教你 Excel。PWA 形式，加到手機主畫面就能用。",
+    "features": [
+     "從零打造全端架構",
+     "線上金流與推播通知",
+     "所有測試情境通過後上線"
+    ],
+    "problem": "付費課程很貴，但很多人都有願意拿來交換的專長。",
+    "role": "一人完成：產品、全端開發與部署。"
+   }
   },
   {
    "id": "cap",
@@ -258,7 +340,20 @@
    "approach": "",
    "results": "",
    "link": "",
-   "linkLabel": ""
+   "linkLabel": "",
+   "zh": {
+    "title": "錯題小老師",
+    "subtitle": "國中會考練習",
+    "status": "開發中",
+    "desc": "依現行課綱整理國、英、數、自、社五科會考練習，按學期分冊複習。",
+    "features": [
+     "每道錯題都有逐步解說的小老師",
+     "像 Duolingo 一樣的每日連續挑戰",
+     "全校前三名可免費使用"
+    ],
+    "problem": "學生練了很多考古題，卻很少得到錯在哪裡的解說。",
+    "role": "一人完成：產品定義、設計與開發。"
+   }
   }
  ],
  "items": {},
@@ -266,6 +361,7 @@
   "intro": "I'm a smart-manufacturing project manager in Kaohsiung, building inspection, audit and automation systems with production and IT teams at a flexible-PCB maker. Outside work, I design and ship my own apps for divers, new investors and students.",
   "email": "yskyskygirl19830613@gmail.com",
   "linkedin": "",
-  "github": ""
+  "github": "",
+  "intro_zh": "我是高雄的智慧工廠專案課長，在軟板製造廠與生產及 IT 團隊一起建置檢驗、稽核與自動化系統。工作之外，我自己設計並開發給潛水員、投資新手和學生使用的 App。"
  }
 }
